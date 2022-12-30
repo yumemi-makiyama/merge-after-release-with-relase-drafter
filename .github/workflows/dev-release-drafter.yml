@@ -32,7 +32,7 @@ jobs:
       - name: Generate build-number
         id: buildnum
         run: |
-          RELEASE_TAGS=$(gh release --repo ${{github.repository}} view --json tagName --jq 'select( .tagName |startswith("'${{env.VERSION_PREFIX}}}'")) | .tagName' || true | wc -l)
+          RELEASE_TAGS=$(gh release --repo ${{github.repository}} view --json tagName --jq 'select( .tagName |startswith("'${{env.VERSION_PREFIX}}}'")) | .tagName' 2>/dev/null || true | wc -l)
 
           MAJOR_VERSION=0
           PATCH_VERSION=$(expr ${RELEASE_TAGS} + 1)
