@@ -32,12 +32,12 @@ jobs:
       - name: Generate CalVer version
         id: calver
         run: |
-          RELEASE_TAGS=$(gh release --repo ${{github.repository}} view --json tagName --jq 'select( .tagName |startswith("'${VERSION_PREFIX'")) | .tagName' || true | wc -l)
+          RELEASE_TAGS=$(gh release --repo ${{github.repository}} view --json tagName --jq 'select( .tagName |startswith("'${{env.VERSION_PREFIX}}}'")) | .tagName' || true | wc -l)
 
           MAJOR_VERSION=0
           PATCH_VERSION=$(expr ${RELEASE_TAGS} + 1)
 
-          VERSION="${VERSION_PREFIX}-${PATCH_VERSION}"
+          VERSION="${{env.VERSION_PREFIX}}}-${PATCH_VERSION}"
 
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
           echo "Version set to ${VERSION}"
