@@ -51,7 +51,7 @@ jobs:
 
           VERSION="${PREFIX}_${PATCH_VERSION}"
 
-          echo ::set-output name=version::${VERSION}
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
           echo "Version set to ${VERSION}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
