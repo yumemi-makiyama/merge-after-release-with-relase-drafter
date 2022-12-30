@@ -31,8 +31,8 @@ jobs:
         run: |
           TODAY=$(date "+%Y-%m-%d")
 
-          RELEASE_TAG=$(gh release --repo ${{github.repository}} view --json tagName --jq .tagName)
-          if [ "${RELEASE_TAG}" = "" ]; then
+          RELEASE_TAG=$(gh release --repo ${{github.repository}} view --json tagName --jq .tagName || true)
+          if [ "${RELEASE_TAG}" = "release not found" ]; then
             RELEASE_TAG="${TODAY}_0"
             echo "There is no release, use ${RELEASE_TAG}"
           fi
@@ -51,7 +51,7 @@ jobs:
 
           VERSION="${PREFIX}_${PATCH_VERSION}"
 
-          echo ::set-output name=version::${VERSION}
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
           echo "Version set to ${VERSION}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
