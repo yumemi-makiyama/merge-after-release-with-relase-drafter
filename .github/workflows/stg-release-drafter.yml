@@ -6,7 +6,7 @@ on:
     branches:
       - develop
 env:
-  VERSION_PREFIX: stg
+  VERSION_PREFIX: stg-
 
 permissions:
   contents: read
@@ -24,12 +24,12 @@ jobs:
       - name: Generate build-number
         id: buildnum
         run: |
-          RELEASE_TAGS=$(gh release --repo ${{github.repository}} view --json tagName --jq 'select( .tagName |startswith("'${{env.VERSION_PREFIX}}'")) | .tagName' 2>/dev/null | wc -l || echo 0)
+          RELEASE_TAGS=$(gh release --repo ${{github.repository}} list --exclude-drafts --exclude-pre-releases | tail -n +1  | grep '^${{env.VERSION_PREFIX}}' | wc -l)
 
           MAJOR_VERSION=0
           PATCH_VERSION=$(expr ${RELEASE_TAGS} + 1)
 
-          VERSION="${{env.VERSION_PREFIX}}-${PATCH_VERSION}"
+          VERSION="${{env.VERSION_PREFIX}}${PATCH_VERSION}"
 
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
           echo "Version set to ${VERSION}"
