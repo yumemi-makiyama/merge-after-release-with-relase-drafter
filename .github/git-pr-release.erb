@@ -1,0 +1,7 @@
+Stating リリース <%= Time.now %>
+
+ステージング環境にリリースしたいんです。
+
+<% pull_requests.each do |pr| -%>
+<%=  pr.to_checklist_item %>
+<% end -%>

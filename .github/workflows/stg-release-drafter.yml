@@ -1,18 +1,20 @@
-name: Release Drafter for develop branch
+name: Release Drafter for Stating
 
 on:
   push:
     # branches to consider in the event; optional, defaults to all
     branches:
-      - develop
+      - main
 env:
-  VERSION_PREFIX: stg-
+  VERSION_PREFIX: stating-
 
 permissions:
   contents: read
 
 jobs:
   update_release_draft:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     permissions:
       # write permission is required to create a github release
       contents: write
@@ -41,6 +43,7 @@ jobs:
           name: ${{ steps.buildnum.outputs.version }}
           version: ${{ steps.buildnum.outputs.version }}
           config-name: "stg-release-drafter.yml"
+          publish: true
           disable-autolabeler: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
