@@ -48,5 +48,6 @@ jobs:
           tag: ${{ steps.buildnum.outputs.version }}
           name: ${{ steps.buildnum.outputs.version }}
           version: ${{ steps.buildnum.outputs.version }}
+          config-name: ""
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
