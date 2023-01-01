@@ -13,7 +13,6 @@ permissions:
 
 jobs:
   update_release_draft:
-    runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     permissions:
       # write permission is required to create a github release
