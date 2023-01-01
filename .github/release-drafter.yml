@@ -35,15 +35,12 @@ autolabeler:
   - label: feature
     branch:
       - '/^feature[/-].+/'
-  - label: fix
-    branch:
-      - '/^fix[/-].+/'
   - label: 'chore'
     files:
       - '*.md'
     branch:
       - '/docs{0,1}\/.+/'
-  - label: 'bug'
+  - label: 'fix'
     branch:
       - '/fix\/.+/'
     title:
