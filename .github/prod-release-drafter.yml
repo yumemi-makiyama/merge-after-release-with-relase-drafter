@@ -1,7 +1,7 @@
-name-template: 'v$RESOLVED_VERSION 🌈'
-tag-template: 'v$RESOLVED_VERSION'
-commitish: develop
-tag-prefix: 'stg-'
+name-template: 'release-$RESOLVED_VERSION 🌈'
+tag-template: 'release-$RESOLVED_VERSION'
+commitish: main
+tag-prefix: 'release'
 categories:
   - title: '🚀 Features'
     labels:
