@@ -34,8 +34,8 @@ jobs:
         run: |
           echo "repository="${{github.repository}} 
           echo "tag="${{env.VERSION_PREFIX}}
-          gh release --repo ${{github.repository}} view --json tagName --jq 'select( .tagName |startswith("'${{env.VERSION_PREFIX}}'")) | .tagName' 2>/dev/null || true | wc -l
-          RELEASE_TAGS=$(gh release --repo ${{github.repository}} view --json tagName --jq 'select( .tagName |startswith("'${{env.VERSION_PREFIX}}}'")) | .tagName' 2>/dev/null || true | wc -l)
+          gh release --repo ${{github.repository}} view --json tagName --jq 'select( .tagName |startswith("'${{env.VERSION_PREFIX}}'")) | .tagName' 2>/dev/null | wc -l || echo 0
+          RELEASE_TAGS=$(gh release --repo ${{github.repository}} view --json tagName --jq 'select( .tagName |startswith("'${{env.VERSION_PREFIX}}}'")) | .tagName' 2>/dev/null | wc -l || echo 0)
 
           MAJOR_VERSION=0
           PATCH_VERSION=$(expr ${RELEASE_TAGS} + 1)
