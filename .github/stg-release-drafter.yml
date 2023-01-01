@@ -1,5 +1,6 @@
 name-template: 'v$RESOLVED_VERSION 🌈'
 tag-template: 'v$RESOLVED_VERSION'
+commitish: develop
 tag-prefix: 'stg-'
 categories:
   - title: '🚀 Features'
@@ -15,39 +16,9 @@ categories:
     label: 'chore'
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
-version-resolver:
-  major:
-    labels:
-      - 'major'
-  minor:
-    labels:
-      - 'minor'
-  patch:
-    labels:
-      - 'patch'
-  default: patch
 template: |
+  ステージング環境のリリースノート
+  
   ## Changes
 
   $CHANGES
-
-# 以下がautolabelerの設定🔥
-autolabeler:
-  - label: feature
-    branch:
-      - '/^feature[/-].+/'
-  - label: 'chore'
-    files:
-      - '*.md'
-    branch:
-      - '/docs{0,1}\/.+/'
-  - label: 'fix'
-    branch:
-      - '/fix\/.+/'
-    title:
-      - '/fix/i'
-  - label: 'enhancement'
-    branch:
-      - '/feature\/.+/'
-    body:
-      - '/JIRA-[0-9]{1,4}/'
