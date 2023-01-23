@@ -7,7 +7,7 @@ on:
     types: [closed]
 
 env:
-  VERSION_PREFIX: stating-
+  VERSION_PREFIX: staging-
 
 permissions:
   contents: read
