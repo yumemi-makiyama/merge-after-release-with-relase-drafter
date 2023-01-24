@@ -1,5 +1,4 @@
 feature: ['feature/*', 'feat/*']
 fix: ['fix/*', 'hotfix/*']
 chore: 'chore/*'
-migration: 'src/database/migrations/*'
 exclude-ReleaseNote: 'develop'
