@@ -1,2 +1,2 @@
 migration:
-- 'src/database/migrations/*'
+    - 'src/database/migrations/*'
