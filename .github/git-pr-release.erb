@@ -1,13 +1,12 @@
 Stating環境リリース <%= Time.now.strftime("%Y年%m月%d日") %>
 
-ステージング環境にリリース
+## ステージング環境にリリース
 
 <% pull_requests.each do |pr| -%>
- <%= pr.to_checklist_item %>
- <% pr.labels.each do |labels| -%>
-  <%= labels.name %>
- <% end -%>
+ <%= pr.to_checklist_item %>, <%= labels.name %>
 <% end -%>
+
+---
 
 <% pull_requests.each do |pr| -%>
     <% pr.labels.each do |labels| -%>
